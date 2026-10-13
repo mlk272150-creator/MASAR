@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f2" />
+    <title>مسار | لوحة التحكم</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <header class="dashboard-header">
+      <a class="brand" href="./dashboard.html"><span class="brand-mark">م</span><strong>مَسار</strong></a>
+      <nav class="main-nav" aria-label="التنقل">
+        <a class="nav-link active" href="./dashboard.html">لوحة التحكم</a>
+        <a class="nav-link" href="./ai-pricing.html">مساعد الذكاء الاصطناعي</a>
+      </nav>
+      <div class="user-menu"><span class="user-avatar" id="user-avatar">م</span><span class="user-name" id="user-name">حسابي</span><button class="logout-button" id="logout-button" type="button">خروج</button></div>
+    </header>
+
+    <main class="dashboard-main">
+      <section class="welcome-row">
+        <div><p class="eyebrow">مساحة العمل</p><h1>أهلاً بك، <span id="welcome-name">صديق مسار</span></h1><p class="welcome-copy">كل شيء تحتاجه لمتابعة مهامك، في مكان واحد.</p></div>
+        <span class="date-label" id="date-label"></span>
+      </section>
+
+      <section class="balance-card" aria-label="رصيد النقاط">
+        <div class="balance-copy"><span>رصيدك الحالي</span><h2><strong id="balance-value">—</strong><small>نقطة</small></h2><span class="balance-foot">النقاط المتاحة في حسابك</span></div>
+        <div class="balance-art" aria-hidden="true"><span>✳</span><i></i><b></b></div>
+      </section>
+
+      <section class="task-action">
+        <div><p class="eyebrow">لديك عمل جديد؟</p><h2>ابدأ بخطوة واضحة</h2><p>اكتب المطلوب وحدد المدينة والمهنة، وسيقترح مسار مكافأة المهمة.</p></div>
+        <button class="primary-button" id="open-task-dialog" type="button"><span>＋</span> طرح مهمة جديدة</button>
+      </section>
+
+      <section class="tasks-section">
+        <div class="section-heading"><div><p class="eyebrow">متابعة بسيطة</p><h2>مهامي الحالية</h2></div><button class="refresh-button" id="refresh-tasks" type="button">تحديث <span>↻</span></button></div>
+        <div class="tasks-panel">
+          <div class="table-scroll"><table><thead><tr><th>المهمة</th><th>الدور</th><th>الحالة</th><th>المكافأة</th><th>الإجراء</th></tr></thead><tbody id="task-table-body"><tr><td colspan="5" class="empty-row">جارٍ تحميل المهام…</td></tr></tbody></table></div>
+          <div class="mobile-task-list" id="mobile-task-list"></div>
+        </div>
+      </section>
+      <footer class="dashboard-footer"><span>مسار © 2026</span><span>نبني فرصاً أقرب، وخطوات أوضح.</span></footer>
+    </main>
+
+    <dialog class="task-dialog" id="task-dialog">
+      <form id="task-form">
+        <div class="dialog-heading"><div><p class="eyebrow">مهمة جديدة</p><h2>ما الذي تريد إنجازه؟</h2></div><button class="close-dialog" type="button" aria-label="إغلاق" id="close-task-dialog">×</button></div>
+        <label class="form-field">عنوان المهمة<input name="title" required minlength="3" maxlength="150" placeholder="مثال: تجهيز طلبية المتجر" /></label>
+        <label class="form-field">تفاصيل مختصرة<textarea name="description" rows="3" placeholder="أضف أي تفاصيل تساعد العامل"></textarea></label>
+        <div class="form-row">
+          <label class="form-field">المدينة<select name="region"><option>نابلس</option><option>رام الله</option><option>الخليل</option><option>جنين</option><option>طولكرم</option></select></label>
+          <label class="form-field">المهنة<select name="profession"><option>كهرباء</option><option>دهان</option><option>صيانة</option><option>برمجة</option></select></label>
+        </div>
+        <div class="form-row">
+          <label class="form-field">مؤشر الطلب<input name="demand" type="number" min="1" max="10" step="1" value="6" required /><small>من 1 إلى 10</small></label>
+          <label class="form-field">مؤشر العرض<input name="supply" type="number" min="1" max="10" step="1" value="6" required /><small>من 1 إلى 10</small></label>
+        </div>
+        <p class="pricing-preview">السعر المقترح: <strong id="task-price-value">—</strong> نقطة <small id="task-price-note">يحسبه XGBoost عند تحديد التفاصيل.</small></p>
+        <div class="form-row">
+          <label class="form-field">معرّف العامل<input name="assignee_id" type="number" min="1" required placeholder="مثال: 2" /><small>يلزم حجز المكافأة في حسابك عند النشر.</small></label>
+          <label class="form-field">الأولوية<select name="priority"><option value="medium">متوسطة</option><option value="high">عالية</option><option value="low">منخفضة</option></select></label>
+        </div>
+        <a class="pricing-shortcut" href="./ai-pricing.html">لست متأكداً من السعر؟ جرّب مساعد التسعير ←</a>
+        <button class="primary-button submit-task" type="submit">نشر المهمة</button>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./api.js" defer></script>
+    <script src="./dashboard.js" defer></script>
+  </body>
+</html>

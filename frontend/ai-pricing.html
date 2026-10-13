@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f2" />
+    <title>مسار | مساعد تسعير المهام</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./ai-pricing.css" />
+  </head>
+  <body>
+    <header class="pricing-header">
+      <a class="brand" href="./dashboard.html"><span class="brand-mark">م</span><strong>مَسار</strong></a>
+      <nav class="main-nav" aria-label="التنقل"><a class="nav-link" href="./dashboard.html">لوحة التحكم</a><a class="nav-link active" href="./ai-pricing.html">مساعد الذكاء الاصطناعي</a></nav>
+      <div class="user-menu"><span class="user-avatar" id="user-avatar">م</span><span class="user-name" id="user-name">حسابي</span><button class="logout-button" id="logout-button" type="button">خروج</button></div>
+    </header>
+    <main class="pricing-main">
+      <a class="back-link" href="./dashboard.html">→ العودة إلى لوحة التحكم</a>
+      <section class="pricing-intro"><span class="ai-orb">✳</span><p class="eyebrow">تخطيط أذكى، بخطوة واحدة</p><h1>مساعد الذكاء الاصطناعي<br /><span>لتسعير المهام</span></h1><p class="intro-copy">قدّر المكافأة المناسبة وفق المنطقة والمهنة وحركة العرض والطلب.</p></section>
+      <section class="pricing-layout">
+        <article class="pricing-panel">
+          <div class="panel-title"><div><p class="eyebrow">تفاصيل المهمة</p><h2>أخبرنا عن العمل</h2></div><span class="step-number">01</span></div>
+          <form id="pricing-form">
+            <label class="form-field">المدينة<select name="region" required><option>نابلس</option><option>رام الله</option><option>الخليل</option><option>جنين</option><option>طولكرم</option></select></label>
+            <label class="form-field">نوع المهنة<select name="profession" required><option>كهرباء</option><option>دهان</option><option>صيانة</option><option>برمجة</option></select></label>
+            <div class="form-row">
+              <label class="form-field">مؤشر الطلب<input name="demand" type="number" min="1" max="10" step="1" value="6" required /><small>من 1 إلى 10</small></label>
+              <label class="form-field">مؤشر العرض<input name="supply" type="number" min="1" max="10" step="1" value="6" required /><small>من 1 إلى 10</small></label>
+            </div>
+            <button class="estimate-button" type="submit">احسب السعر المقترح <span>✳</span></button>
+          </form>
+          <p class="sample-note" id="pricing-data-note">تدريب توضيحي على 500 سجل اصطناعي موزع على خمس مدن وأربع مهن. لا تمثل الأسعار سوقاً موثقاً.</p>
+        </article>
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-heading"><div><p class="eyebrow">تقدير النموذج</p><h2>القيمة المقترحة</h2></div><span class="result-icon">✦</span></div>
+          <div class="result-price"><strong id="price-value">—</strong><span>نقطة</span></div>
+          <div class="result-rule"></div>
+          <p class="result-message" id="price-message">أدخل تفاصيل المهمة، واحصل على تقدير مبدئي فوراً.</p>
+          <div class="model-note"><span>AI</span><div><strong>XGBoost Regressor</strong>          <small>البيانات اصطناعية؛ لا تعتمد عليه كسعر سوق مؤكد.</small></div></div>
+          <a class="return-button" href="./dashboard.html">العودة للوحة التحكم ←</a>
+        </aside>
+      </section>
+      <footer class="pricing-footer">مسار © 2026 <span>الذكاء أداة مساعدة، والقرار لك.</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./api.js" defer></script>
+    <script src="./ai-pricing.js" defer></script>
+  </body>
+</html>

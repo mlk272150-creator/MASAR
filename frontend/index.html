@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f2" />
+    <title>مسار | تسجيل الدخول</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body class="login-page">
+    <main class="login-card">
+      <div class="login-brand" aria-label="مسار">
+        <span class="brand-mark">م</span>
+        <span>مَسار</span>
+      </div>
+      <form id="login-form" class="login-form">
+        <label class="login-field">
+          <span>رقم الهاتف</span>
+          <input name="phone_number" type="tel" autocomplete="tel" inputmode="tel" placeholder="مثال: 0599123456" required minlength="7" maxlength="20" />
+        </label>
+        <label class="login-field">
+          <span>كلمة السر</span>
+          <input name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة السر" required minlength="8" maxlength="128" />
+        </label>
+        <button type="submit" class="login-button">تسجيل الدخول <span aria-hidden="true">←</span></button>
+        <p class="login-message" id="login-message" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+    <script src="./api.js" defer></script>
+    <script src="./login.js" defer></script>
+  </body>
+</html>
